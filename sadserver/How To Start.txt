@@ -1,0 +1,2 @@
+Open powershell in this folder
+docker-compose up

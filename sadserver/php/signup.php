@@ -19,7 +19,7 @@
       <p>Confirm Password</p>
       <input type="text" name="" placeholder="Confirm Password">
       <input type="submit" name="" value="Sign up">
-      <a href="#">Back to login</a>
+      <a href="login.php">Back to login</a>
     </form>
   </div>
 

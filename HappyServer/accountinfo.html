@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Account info</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style3.css">
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+  <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+  <script src="indexDB.js"></script>
+  <script src="index.js"></script>
+
+<body>
+  <div class="container">
+    <div class="menu">
+      <ul>
+        <li class="logo"><img src="resources/blackhat.png"></li>
+        <li class="active">Account Info</li>
+        <li><button id="groceries">Grocery List</button></li>
+        <li>Log Out</li>
+      </ul>
+    </div>
+    <div class="banner">
+      <div class="info-text">
+        <h1>This is all your private account information :D</h1>
+        <div class="info-container" id = "info-container">
+        </div>
+      </div>
+    </div>
+</body>
+</head>
+
+</html>

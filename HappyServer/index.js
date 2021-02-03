@@ -8,16 +8,39 @@
     	"use strict";
     
     	window.addEventListener("load", initialize);
+
+	var groceries = null;
+	var userInfo = null;
     
     
     	function initialize() {
 		setTimeout(() => {getItems().then(fillStore);}, 2000);
+		setTimeout(() => {getUserInfo().then(fillUser);}, 2000);
+		
     	}
 
-    	function fillStore(items) {
-		for (let i = 0; i < items.length; i++) {
+	function fillUser(info) {
+		userInfo = info;
+		showUserInfo();
+	}
+
+	function fillStore(items) {
+		groceries = items;
+	}
+
+	function showUserInfo() {
+		for (let i = 0; i < userInfo.length; i++) {
 			let newDiv = document.createElement('div');
-                	newDiv.innerHTML = events[i].Name + ": " + events[i].Price;
+                	newDiv.innerHTML = userInfo[i].Name + ": $" + userInfo[i].Money;
+			$("info-container").appendChild(newDiv);
+		}
+	}
+
+    	function showStore() {
+		for (let i = 0; i < userInfo.length; i++) {
+			let newDiv = document.createElement('div');
+                	newDiv.innerHTML = userInfo[i].name + ": " + userInfo[i].money;
+			$("info-container").appendChild(newDiv);
 		}
 	}
 

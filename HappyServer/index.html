@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-  </head>
-  <body>
-    <p>It Works</p>  
-  </body>
+<head>
+  <title>Login</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+  <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+  <script src="indexDB.js"></script>
+  <script src="login.js"></script>
+
+<body>
+
+  <div class="logincontainer">
+    <img src="resources/avatar.png" class="avatar">
+    <h1>Login Here </h1>
+    <form onsubmit="return false">
+      <p>Username</p>
+      <input type="text" id="username" placeholder="Enter Username">
+      <p>Password</p>
+      <input type="password" id="password" placeholder="Enter Password">
+      <button id="loginToAccount">login</button>
+      <a href="signup.html">Don't have an account?</a>
+	  <br>
+	  <a href="accountinfo.html">Placeholder to skip login mechanism</a>
+    </form>
+  </div>
+
+</body>
+</head>
 </html>

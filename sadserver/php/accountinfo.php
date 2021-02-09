@@ -1,3 +1,13 @@
+<?php
+$host = 'db';
+$dbuser = 'devuser';
+$dbpassword = 'devpass';
+$dbid = 'test_db';
+
+// connect to the database
+$db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
+?>
+
 <html>
 
 <head>
@@ -20,6 +30,42 @@
       <div class="info-text">
         <h1>This is all your private account information :D</h1>
         <div class="info-container">
+
+        <form action="/accountinfo.php">
+          <label for="category">Pick a category</label>
+          <select name="categories" id "category">
+            <option value="frozen">Frozen</option>
+            <option value="produce">Produce</option>
+          </select>
+          <br>
+          <label for="availability">Choose Availability</label>
+          <select name="availability" id "availability">
+            <option value="1">Available</option>
+            <option value="2">Out of Stock</option>
+          </select>
+          <br>
+          <input type="submit" value="Submit">
+        </form> 
+        <br><br>
+        <table style="width:100%" >
+
+        <!-- Fill in Items table -->
+        <?php
+        
+        //list out items
+        $cat = htmlspecialchars($_GET['categories']);
+        $aval = htmlspecialchars($_GET['availability']);
+
+        $query = "Select * FROM Items WHERE category = '$cat' AND availability = '$aval' ";
+        $result = mysqli_query($db, $query);
+
+        print "<tr><td> Item Number </td><td> Item Name </td><td> Price </td><td> </td></tr>";
+        while($row = mysqli_fetch_array($result)){
+          echo "<tr><td>" . $row['id'] . "</td><td>" . $row['name'] . "</td><td>" . $row['price'] . "</td><td>" . "</td></tr>";
+        }    
+        
+        ?>
+        </table>
         </div>
       </div>
     </div>

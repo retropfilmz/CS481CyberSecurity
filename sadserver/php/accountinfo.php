@@ -52,19 +52,22 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
         <!-- Fill in Items table -->
         <?php
         
-        //list out items
-        $cat = htmlspecialchars($_GET['categories']);
-        $aval = htmlspecialchars($_GET['availability']);
+        // Grab variables from URI
+        $cat = @htmlspecialchars($_GET['categories']);
+        $aval = @htmlspecialchars($_GET['availability']);
 
+        // Query the server
         $query = "Select * FROM Items WHERE category = '$cat' AND availability = '$aval' ";
         $result = mysqli_query($db, $query);
 
+        // Print results to a table
         print "<tr><td> Item Number </td><td> Item Name </td><td> Price </td><td> </td></tr>";
         while($row = mysqli_fetch_array($result)){
           echo "<tr><td>" . $row['id'] . "</td><td>" . $row['name'] . "</td><td>" . $row['price'] . "</td><td>" . "</td></tr>";
         }    
-        
+
         ?>
+
         </table>
         </div>
       </div>

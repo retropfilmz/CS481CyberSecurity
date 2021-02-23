@@ -14,7 +14,6 @@
     
     
     	function initialize() {
-		setTimeout(() => {getItems().then(fillStore);}, 2000);
 		setTimeout(() => {getUserInfo().then(fillUser);}, 2000);
 		
     	}
@@ -24,22 +23,10 @@
 		showUserInfo();
 	}
 
-	function fillStore(items) {
-		groceries = items;
-	}
-
 	function showUserInfo() {
 		for (let i = 0; i < userInfo.length; i++) {
 			let newDiv = document.createElement('div');
                 	newDiv.innerHTML = userInfo[i].Name + ": $" + userInfo[i].Money;
-			$("info-container").appendChild(newDiv);
-		}
-	}
-
-    	function showStore() {
-		for (let i = 0; i < userInfo.length; i++) {
-			let newDiv = document.createElement('div');
-                	newDiv.innerHTML = userInfo[i].name + ": " + userInfo[i].money;
 			$("info-container").appendChild(newDiv);
 		}
 	}

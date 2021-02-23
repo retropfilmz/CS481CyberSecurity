@@ -41,7 +41,7 @@ async function getUserInfo() {
     user = auth.currentUser.email;
     user = user.substring(0,user.length-10);
     console.log(user);
-    var snapshot = await db.collection('Users').get();
+    var snapshot = await db.collection('Groups').get();
     
     for (var x=0; x<snapshot.docs.length; x++) {
       var doc = snapshot.docs[x];

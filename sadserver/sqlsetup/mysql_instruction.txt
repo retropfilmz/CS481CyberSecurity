@@ -1,0 +1,15 @@
+To set up the database on docker first navigate to the folder where users.sql is in powershell.
+Enter the following command:
+
+docker cp users.sql sadsql:/var/lib/mysql/test_db
+docker cp items.sql sadsql:/var/lib/mysql/test_db
+
+Now that the sql files are in the directory of the database, use the next command to set up the table:
+
+docker exec -it sadsql bash
+cd /var/lib/mysql/test_db
+
+mysql -u devuser -p test_db < users.sql;
+mysql -u devuser -p test_db < items.sql;
+
+Now the table is created and you can input data.

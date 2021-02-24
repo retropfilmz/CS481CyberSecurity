@@ -1,5 +1,5 @@
 <?php
-$host = 'db';
+$host = 'localhost';
 $dbuser = 'devuser';
 $dbpassword = 'devpass';
 $dbid = 'test_db';
@@ -11,7 +11,7 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
 <html>
 
 <head>
-  <title>Account info</title>
+  <title>SadServer:Account info</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style3.css">

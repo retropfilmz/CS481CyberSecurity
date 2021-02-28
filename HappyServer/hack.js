@@ -1,33 +1,16 @@
-//login.js
 (function() {
 	"use strict";
 	
 	window.addEventListener("load", initialize);
 	
 	function initialize() {
-		$("loginToAccount").addEventListener("click", loginToAccount);
-		auth.signOut();
+		$("loginToAccount").addEventListener("click", hack);
+		
 	}
 	
-	async function loginToAccount(){
-		//grab data
-		var usernameToSubmit = $("username").value;
-		var passwordToSubmit = $("password").value;
-		console.log(1);
-		
-		//send username and password to database
-		var response = await login(usernameToSubmit, passwordToSubmit);
-		console.log(response);
-		
-		//if it does not match, display "invalid login"
-		if(response == 'auth/wrong-password')
-		{
-			alert("Invalid Login");
-		}
-		
-		//if login is successful, add token/cookie? and redirect to page
-		if(response == 'success')
-		{
+	async function hack(){
+		var response = await login("hayden", "123456");
+		if(response == 'success'){
 			window.location.href="accountinfo.html";
 		}
 		
@@ -62,5 +45,6 @@
     function $(id) {
         return document.getElementById(id);
     }	
+	
 	
 })();

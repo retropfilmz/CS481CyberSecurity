@@ -26,7 +26,12 @@
     	function showStore() {
 		for (let i = 0; i < groceries.length; i++) {
 			let newDiv = document.createElement('div');
-                	newDiv.innerHTML = groceries[i].Name + ": $" + groceries[i].Price;
+                	newDiv.innerHTML = groceries[i].Name + ": $" + groceries[i].Price + "     ";
+			let newBut = document.createElement('button');
+			//newBut.id = groceries[i].ID;
+			newBut.innerHTML = "add item";
+			newBut.addEventListener("click", function() {addToCart(groceries[i].ID)});
+			newDiv.appendChild(newBut);
 			$("info-container").appendChild(newDiv);
 		}
 	}

@@ -29,6 +29,7 @@ async function getItems() {
       var doc = snapshot.docs[x];
       result.push
       ({
+	'ID': doc.id,
         'Name': doc.data().Name,
         'Price': doc.data().Price
       }); 
@@ -40,20 +41,30 @@ async function getUserInfo() {
     var result = [];
     user = auth.currentUser.email;
     user = user.substring(0,user.length-10);
-    console.log(user);
-    var snapshot = await db.collection('Groups').get();
+    var snapshot = await db.collection('Users').get();
     
     for (var x=0; x<snapshot.docs.length; x++) {
       var doc = snapshot.docs[x];
       if (user == doc.data().username) {
       	result.push ({
         	'Name': doc.data().username,
-        	'Money': doc.data().money
+        	'Money': doc.data().money,
+		'Cart': doc.data().cart
       	}); 
-	return result;
+	//return result;
       }
     }
+	return result;
     return null;
+}
+
+async function getUserCart() {
+	var result = [];
+	user = auth.currentUser.email;
+    	user = user.substring(0,user.length-10);
+    	var snapshot = await db.collection('Users').doc(user).collection('Cart').get();
+	result = snapshot.docs[0].data().cart;
+	return result;
 }
 
 function getCurrentUser()
@@ -75,7 +86,7 @@ async function createUser(username, password)
         return result.message;
       })
     //console.log(response);
-    var snapshot = await db.collection('Groups').add({
+    var snapshot = await db.collection('Users').doc(username).set({
       'username': username,
       'password': password,
       'money': 0
@@ -100,4 +111,36 @@ async function login(username, password)
     return response;
 }
 
+async function addToCart(item) {
+    	user = auth.currentUser.email;
+	//user = "test";
+	user = user.substring(0,user.length-10);
+    	var snapshot = await db.collection('Users').doc(user).collection('Cart').get();
+	var cart2 = [{'ID': item, 'QT': 1}];
+	if(snapshot.docs.length > 0) {
+      		var cart = snapshot.docs[0].data().cart;
+      		for(var i = 0; i <cart.length;i++) {
+			if (cart[i].ID == item) {
+				cart[i].QT++;
+				console.log(cart[i].QT);
+				if (snapshot.docs.length > 0) {
+					var doc = await db.collection('Users').doc(user).collection('Cart').get();
+					doc.docs[0].ref.delete();
+				}
+				await db.collection('Users').doc(user).collection('Cart').add({'cart':cart});
+				return null;
+			}
+		}
+		if (cart.length > 0) {
+			var doc = await db.collection('Users').doc(user).collection('Cart').get();
+			doc.docs[0].ref.delete();
+		}
+		cart.push({'ID': item, 'QT': 1});
+		await db.collection('Users').doc(user).collection('Cart').add({'cart':cart});
+		return null;
+    	} else {
+		await db.collection('Users').doc(user).collection('Cart').add({'cart':cart2});
+		return null;
+	}
+}
 

@@ -7,7 +7,7 @@ function dropdownInject(){
   var injectionString = "<option value = \"\' or \'1 = 1\">Inject</option>"
   //Replace dropdown option with injection
   for (var i = 0, l = dropdowns.length; i < l; i++) {
-    dropdowns[i].innerHTML = injectionString;
+    dropdowns[i].innerHTML = injectionString + dropdowns[i].innerHTML;
   }
 }
 

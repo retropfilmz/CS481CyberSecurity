@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+
+  "name": "SQLInjector",
+  "version": "0.0.1",
+  "description": "A tool that targets dropdowns to try to inject into sql query",
+
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Tool for SQLInjection",
+    "default_icon": "./syringe.png"
+  },
+
+  "content_scripts": [{
+    "js": ["content.js"],
+    "matches": ["<all_urls>"]
+  }]
+
+}

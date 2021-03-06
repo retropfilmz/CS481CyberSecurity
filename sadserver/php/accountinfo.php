@@ -63,7 +63,7 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
         // Print results to a table
         print "<tr><td> Item Number </td><td> Item Name </td><td> Price </td><td> </td></tr>";
         while($row = mysqli_fetch_array($result)){
-          echo "<tr><td>" . $row['id'] . "</td><td>" . $row['name'] . "</td><td>" . $row['price'] . "</td><td>" . "</td></tr>";
+          echo "<tr><td>" . $row['ItemID'] . "</td><td>" . $row['name'] . "</td><td>" . $row['price'] . "</td><td>" . "</td></tr>";
         }    
 
         ?>

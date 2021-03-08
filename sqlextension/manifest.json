@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "SQLInjector",
-  "version": "0.0.3",
-  "description": "A tool that targets dropdowns to try to inject into sql query",
+  "version": "0.0.4",
+  "description": "A tool that manipulates sql query",
 
   "browser_action": {
     "default_popup": "popup.html",

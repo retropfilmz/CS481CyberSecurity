@@ -1,13 +1,11 @@
 CREATE TABLE `ShoppingCart`(
-    UserID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    CartID INT(11) NOT NULL,
-    Cart INT(11) NOT NULL,
-    total DOUBLE NOT NULL
+    CartID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    UserID INT(11) NOT NULL,
+    Total DOUBLE NOT NULL
 ); 
 
-CREATE TABLE `Cart`(
-    Cart INT(11) NOT NULL,
-    ItemID INT(11) NOT NULL,
-    quantity INT(99) NOT NULL
-);
-
+INSERT INTO ShoppingCart (UserID, Total) VALUES (1, 32.59);
+INSERT INTO ShoppingCart (UserID, Total) VALUES (2, 17.86);
+INSERT INTO ShoppingCart (UserID, Total) VALUES (4, 345.59);
+INSERT INTO ShoppingCart (UserID, Total) VALUES (6, 165.35);
+INSERT INTO ShoppingCart (UserID, Total) VALUES (2, 15.64);

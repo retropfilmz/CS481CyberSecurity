@@ -11,7 +11,7 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
 <html>
 
 <head>
-  <title>SadServer:Account info</title>
+  <title>SadServer:Grocery List</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style3.css">
@@ -21,28 +21,19 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
     <div class="menu">
       <ul>
         <li class="logo"><img src="/resources/blackhat.png"></li>
-        <li class="active">Account Info</li>
-        <li id='grlist'>Grocery List</li>
+        <li id='accinfo'>Account Info</li>
+        <li class="active">Grocery List</li>
         <li>Log Out</li>
       </ul>
     </div>
     <div class="banner">
       <div class="info-text">
-        <h1>This is all your private account information :D</h1>
+        <h1>Search for an item to add to your list!</h1>
         <div class="info-container">
 
-        <form action="/accountinfo.php">
-          <label for="category">Pick a category</label>
-          <select name="categories" id "category">
-            <option value="frozen">Frozen</option>
-            <option value="produce">Produce</option>
-          </select>
-          <br>
-          <label for="availability">Choose Availability</label>
-          <select name="availability" id "availability">
-            <option value="1">Available</option>
-            <option value="2">Out of Stock</option>
-          </select>
+        <form action="/grocerylist.php">
+          <label for="searchinfo">Item Name:</label>
+          <input type="text" id="searchinfo" name="searchinfo"> 
           <br>
           <input type="submit" value="Submit">
         </form> 
@@ -53,11 +44,10 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
         <?php
         
         // Grab variables from URI
-        $cat = @htmlspecialchars($_GET['categories']);
-        $aval = @htmlspecialchars($_GET['availability']);
+        $search = @htmlspecialchars($_GET['searchinfo']);
 
         // Query the server
-        $query = "Select * FROM Items WHERE category = '$cat' AND availability = '$aval' ";
+        $query = "Select * FROM Items WHERE name = '$search' ";
         $result = mysqli_query($db, $query);
 
         // Print results to a table
@@ -73,11 +63,13 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
       </div>
     </div>
 </body>
+
 <script>
-  document.getElementById('grlist').addEventListener('click', function(){
-    document.location.href = '/grocerylist.php';
+  document.getElementById('accinfo').addEventListener('click', function(){
+    document.location.href = '/accountinfo.php';
   });
 </script>
+
 </head>
 
 </html>

@@ -3,9 +3,11 @@ CREATE TABLE `ShoppingCart`(
     CartID INT(11) NOT NULL,
     Cart INT(11) NOT NULL,
     total DOUBLE NOT NULL
-); CREATE TABLE `Cart`(
+); 
+
+CREATE TABLE `Cart`(
     Cart INT(11) NOT NULL,
     ItemID INT(11) NOT NULL,
     quantity INT(99) NOT NULL
-)
+);
 

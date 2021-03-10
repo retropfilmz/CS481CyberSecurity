@@ -25,12 +25,12 @@ After executing this the Users table becomes part of the dropdown menu.
 Using this alone will show you all of your account information.
 Using this in combination with Account Info UserID Spoof will show you all user data.
 
-##Grocery List Dump
+## Grocery List Dump
 Targets the search text field on the Grocery List page.
 This query uses the input to find items that match.
 Submitting a query after running this command will dump the entire list of items.
 
-##Inventory Multiple Categories
+## Inventory Multiple Categories
 Targets the dropdown on the Inventory page.
 Allows for a feature that should really be implemented by a real website but could possibly be used maliciously.
 This example adds the option for both Frozen and Produce to be queried at the same time.

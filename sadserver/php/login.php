@@ -19,12 +19,12 @@
 	
   	<div class="input-group">
   		<label>Username</label>
-  		<input type="text" name="username" placeholder="Enter Username">
+  		<input type="text" id="username" name="username" placeholder="Enter Username">
   	</div>
 	  
 	<div class="input-group">
   		<label>Password</label>
-  		<input type="password" name="password" placeholder="Enter Password">
+  		<input type="password" id="password" name="password" placeholder="Enter Password">
   	</div>
 	  
     <div class="input-group">

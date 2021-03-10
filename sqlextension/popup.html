@@ -1,14 +1,45 @@
 <html>
-  <head>
-    <title>SQL Injection Tool</title>
-  </head>
-  <body>
-      <img src='' id='logo'>
-      <button id='dropdownInject' value='0.1'>Dropdown Injection</button>
-      <button id='tfToInject' value='0.1'>Inection String in Text Box</button>
-      <button id='identifyTable' value='0.1'>Identify Tables Used in Page</button>
-      <button id='customScriptBox' value='0.1'>Custom Query Box</button>
-      <button id='destruction' value='0.1'>Destruction</button>
-      <script src="popup.js"></script>
-  </body>
+
+<head>
+  <title>SQL Injection Tool</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <img src='' id='logo'>
+    <div class="Button_container">
+      <ul class="list" id="main-menu">
+        <li>
+          <p class="name"> SQL injection tool</p>
+        </li>
+        <li>
+          <button class="button" id='dropdownInject' value='0.1' ><span>Dropdown injection</span></button>
+        </li>
+        <li>
+          <button class="button" id='dropdownInject' value='0.1' ><span>Textfield injection</span></button>
+        </li>
+        <li>
+          <button class="button" id='dropdownInject' value='0.1' ><span>Login password attack </span></button>
+        </li>
+        <li>
+          <button class="button" id='tfToInject' value='0.1'><span>Account Info UserID </span></button>
+        </li>
+        <li>
+          <button class="button" id='identifyTable' value='0.1'><span>Account Info Table Change </span></button>
+        </li>
+        <li>
+          <button class="button" id='customScriptBox' value='0.1'><span>List destruction </span></button>
+        </li>
+        <li>
+          <button class="button" id='destruction' value='0.1'><span>Table change </span></button>
+        </li>
+      </ul>
+    </div>
+    <script src="popup.js"></script>
+  </div>
+</body>
+
 </html>

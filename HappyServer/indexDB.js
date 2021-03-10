@@ -67,6 +67,23 @@ async function getUserCart() {
 	return result;
 }
 
+async function getShipping(user) {
+	var result = [];
+	user = auth.currentUser.email;
+    	user = user.substring(0,user.length-10);
+    	var snapshot = await db.collection("Shipping").get();
+	for (var x=0; x<snapshot.docs.length; x++) {
+      		var doc = snapshot.docs[x];
+		if (user == doc.data().username) {
+      			result.push ({
+        		'Name': doc.data().username,
+			'Address': doc.data().Address
+      			}); 
+		}
+    	}
+	return result;
+}
+
 function getCurrentUser()
 {
   return auth.currentUser;

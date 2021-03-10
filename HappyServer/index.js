@@ -12,12 +12,13 @@
 	var groceries = null;
 	var userInfo = null;
 	var userCart = null;
+	var Shippings = null;
     
     
     	function initialize() {
+		$("cart").addEventListener("click", function() {getUserCart().then(fillCart);});
 		setTimeout(() => {getItems().then(fillStore);}, 2000);
 		setTimeout(() => {getUserInfo().then(fillUser);}, 2000);
-		setTimeout(() => {getUserCart().then(fillCart);}, 2000);
 		
     	}
 
@@ -25,10 +26,17 @@
 		groceries = items;
 	}
 
+	function fillShipping(items) {
+		Shippings = items;
+		showShippings();
+	}
+
 
 	function fillUser(info) {
 		userInfo = info;
 		showUserInfo();
+		$("shipments").addEventListener("click", function() {getShipping(userInfo[0].Name).then(fillShipping);});
+		//getShipping(userInfo[0].Name).then(fillShipping);
 	}
 
 	function showUserInfo() {
@@ -46,6 +54,10 @@
 
 	function showUserCart() {
 		var total = 0;
+		$("info-container").innerHTML = "";
+		let newDiv5 = document.createElement('div');
+                newDiv5.innerHTML = userInfo[0].Name + ": $" + userInfo[0].Money;
+		$("info-container").appendChild(newDiv5);
 		let newDiv = document.createElement('div');
 		let p = document.createElement('p');
 		p.innerText = "SHOPPING CART";
@@ -61,6 +73,25 @@
 		let p2 = document.createElement('p');
 		p2.innerText = "TOTAL COST: $" + total;
 		$("info-container").appendChild(p2);
+		
+	}
+
+	function showShippings() {
+		$("info-container").innerHTML = "";
+		let newDiv = document.createElement('div');
+                newDiv.innerHTML = userInfo[0].Name + ": $" + userInfo[0].Money;
+		$("info-container").appendChild(newDiv);
+		let newDiv2 = document.createElement('div');
+		let p = document.createElement('p');
+		p.innerText = "SHIPMENTS";
+		$("info-container").appendChild(p);
+		console.log(Shippings);
+		for (let i = 0; i < Shippings.length; i++) {
+			let p2 = document.createElement('p');
+                	p2.innerText = "You have has a package going to " + Shippings[i].Address;
+			newDiv2.appendChild(p2);
+		}
+		$("info-container").appendChild(newDiv2);
 		
 	}
 

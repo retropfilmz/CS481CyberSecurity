@@ -24,3 +24,5 @@ Notes:
 in the package json file.
 
 2. Jest package was not uploaded as it can be gotten from the commands above.
+
+3. Find full report showing all tested at CS481CyberSecurity/testing/extensionTesting/automatedTesting/coverage/lcov-report/index.html

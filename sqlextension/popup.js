@@ -14,29 +14,45 @@ function tfToInject(){
     });
 }
 
-function identifyTable(){
+function loginPA(){
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         console.log(tabs[0].id);
-        chrome.tabs.sendMessage(tabs[0].id, {"message": "identify_table"});
+        chrome.tabs.sendMessage(tabs[0].id, {"message": "loginPA"});
     });
 }
 
-function customScriptBox(){
+function accinfoUID(){
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         console.log(tabs[0].id);
-        chrome.tabs.sendMessage(tabs[0].id, {"message": "custom_script_box"});
+        chrome.tabs.sendMessage(tabs[0].id, {"message": "accinfoUID"});
     });
 }
 
-function destruction(){
+function accinfoTCU(){
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         console.log(tabs[0].id);
-        chrome.tabs.sendMessage(tabs[0].id, {"message": "destruction"});
+        chrome.tabs.sendMessage(tabs[0].id, {"message": "accinfoTCU"});
+    });
+}
+
+function groceryDump(){
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        console.log(tabs[0].id);
+        chrome.tabs.sendMessage(tabs[0].id, {"message": "groceryDump"});
+    });
+}
+
+function inventoryMC(){
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        console.log(tabs[0].id);
+        chrome.tabs.sendMessage(tabs[0].id, {"message": "inventoryMC"});
     });
 }
 
 document.getElementById('dropdownInject').addEventListener('click', dropdownInject);
 document.getElementById('tfToInject').addEventListener('click', tfToInject);
-document.getElementById('identifyTable').addEventListener('click', identifyTable);
-document.getElementById('customScriptBox').addEventListener('click', customScriptBox);
-document.getElementById('destruction').addEventListener('click', destruction);
+document.getElementById('loginPA').addEventListener('click', loginPA);
+document.getElementById('accinfoUID').addEventListener('click', accinfoUID);
+document.getElementById('accinfoTCU').addEventListener('click', accinfoTCU);
+document.getElementById('groceryDump').addEventListener('click', groceryDump);
+document.getElementById('inventoryMC').addEventListener('click', inventoryMC);

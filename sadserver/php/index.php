@@ -37,7 +37,17 @@
 
     <!-- logged in user information -->
     <?php  if (isset($_SESSION['username'])) : ?>
-    	<p>Welcome <strong><?php foreach($_SESSION['user'] as $row){echo $row["username"];} ?></strong></p>
+    	<p>Welcome <strong> 
+		<?php
+		for ($i = 0; $i < $_SESSION['numlines']; $i++){
+				print_r($_SESSION['whatever'][$i][1]);
+				echo(' ');
+				print_r($_SESSION['whatever'][$i][2]);
+				echo('<br><br>');
+			}
+		?>
+		</strong></p>
+	
     	<p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p>
     <?php endif ?>
 	<a href="accountinfo.php">Account Info</a>

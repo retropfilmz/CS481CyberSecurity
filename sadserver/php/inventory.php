@@ -29,6 +29,7 @@
           <select name="categories" id="category">
             <option value="frozen">Frozen</option>
             <option value="produce">Produce</option>
+            <option value="grocery">Grocery</option>
           </select>
           <br>
           <label for="availability">Choose Availability</label>
